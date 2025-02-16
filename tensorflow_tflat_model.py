@@ -25,6 +25,7 @@ def get_tflat_model(parameters, number_of_features):
     """
     Configure tflat model from parameters
     """
+    mask_value = parameters.get("mask_value")
     num_tracks = parameters.get("num_tracks")
     num_features = parameters.get("num_features")
     num_transformer_blocks = parameters.get("num_transformer_blocks")
@@ -37,13 +38,13 @@ def get_tflat_model(parameters, number_of_features):
     inputs = keras.layers.Input((number_of_features,))
 
     # Replace NaN's by a special number
-    raw_features = keras.ops.nan_to_num(inputs, nan=999)
+    raw_features = keras.ops.nan_to_num(inputs, nan=mask_value)
 
     # 3D tensor with axes for samples, tracks and features
     reshaped_features = keras.layers.Reshape((num_tracks, num_features))(raw_features)
 
     # Create a keras mask for padded tracks
-    masked_features = keras.layers.Masking(999)(reshaped_features)
+    masked_features = keras.layers.Masking(mask_value=mask_value)(reshaped_features)
 
     # Normalize the input features
     normed_features = keras.layers.BatchNormalization()(masked_features)
@@ -108,5 +109,3 @@ def get_tflat_model(parameters, number_of_features):
     outputs = keras.layers.Dense(units=1, activation="sigmoid", name="sigmoid")(features)
     model = keras.Model(inputs=inputs, outputs=outputs)
     return model
-
-

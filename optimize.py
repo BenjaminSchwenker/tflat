@@ -23,10 +23,11 @@ def objective(trial):
     tf.random.set_seed(1234)
 
     parameters = {}
+    parameters["clip_value"] = 4
     parameters['mask_value'] = 0
     parameters['num_tracks'] = 10
     parameters['num_features'] = 14
-    parameters["num_transformer_blocks"] = 3
+    parameters["num_transformer_blocks"] = 6
     parameters["num_heads"] = 4
     parameters["embedding_dims"] = 128
     parameters["mlp_hidden_units_factors"] = [2, 1,]

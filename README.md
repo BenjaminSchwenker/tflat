@@ -27,7 +27,7 @@ pip install optuna
 The data file (data.npy) can be downloaded here to a local computer via browser
 
 ```
-https://drive.google.com/file/d/1G009ylfLRggoom_-0cwaTxBFTVW5P-7j/view?usp=sharing
+https://drive.google.com/file/d/12wZMJjv4BjLmYz97dgPgQz7cCKyxHeGq/view?usp=sharing
 ```
 
 Next step is to upload it to the front end computer with rsync

@@ -1,4 +1,4 @@
-# tflat_optuna
+# tflat
 
 
 Tune hyperparameter of tflat using optuna library
@@ -11,8 +11,8 @@ Recipe for running on the GWDG compute cluster.
 2) Create a conda environment by executing lines below:
 
 ```
-git clone git@gitlab.desy.de:benjamin.schwenker/tflat_optuna.git
-cd tflat_optuna
+git clone https://github.com/BenjaminSchwenker/tflat.git
+cd tflat
 
 module load miniconda3
 conda create -n tflat  python=3.11.9
@@ -33,7 +33,7 @@ https://drive.google.com/file/d/12wZMJjv4BjLmYz97dgPgQz7cCKyxHeGq/view?usp=shari
 Next step is to upload it to the front end computer with rsync
 
 ```
-scp -rp data.npy USERNAME@login-mdc.hpc.gwdg.de:/user/USER/USERNAME/tflat_optuna
+scp -rp data.npy USERNAME@login-mdc.hpc.gwdg.de:/user/USER/USERNAME/tflat
 ```
 
 4) Run the SLURM jobscript

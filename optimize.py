@@ -13,6 +13,8 @@ def objective(trial):
     with open('data.npy', 'rb') as f:
         X = np.load(f)
         y = np.load(f)
+        Xval = np.load(f)
+        yval = np.load(f)
         Xtest = np.load(f)
         ytest = np.load(f)
 
@@ -37,7 +39,7 @@ def objective(trial):
 
     batch_size = 256
     num_steps = int(X.shape[0]/batch_size)
-    epochs = 100
+    epochs = 150
     weight_decay = trial.suggest_float("weight_decay", 1e-7, 1e-1, log=True)
     initial_learning_rate = trial.suggest_float("initial_learning_rate", 1e-5, 1e-1, log=True)
     decay_steps = trial.suggest_int("decay_steps", 1, 100*num_steps, log=True)
@@ -68,19 +70,19 @@ def objective(trial):
     callbacks = [tf.keras.callbacks.EarlyStopping(
         monitor='val_loss',
         min_delta=0,
-        patience=7,
+        patience=10,
         verbose=1,
         mode='auto',
         baseline=None,
         restore_best_weights=True)]
 
-    model.fit(X, y, validation_data=(Xtest, ytest), batch_size=batch_size, epochs=epochs, callbacks=callbacks, verbose=2)
+    model.fit(X, y, validation_data=(Xval, yval), batch_size=batch_size, epochs=epochs, callbacks=callbacks, verbose=2)
 
     # Evaluate the model accuracy on the validation set.
     score = model.evaluate(Xtest, ytest, verbose=0)
-    val_accuracy = score[1]
+    test_accuracy = score[1]
 
-    return val_accuracy
+    return test_accuracy
 
 
 if __name__ == "__main__":

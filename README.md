@@ -24,6 +24,15 @@ pip install pyarrow
 pip install PyYAML
 ```
 
+Confirm that tensorflow is seeing your GPU by typing:
+
+```
+python3 -c "import tensorflow as tf; print(tf.config.list_physical_devices('GPU'))"
+```
+
+In case the GPU device is not found, your system may be missing GPU drivers. Please
+follow the instructions on this page: https://www.tensorflow.org/install/pip
+
 ---
 
 ## Training Samples

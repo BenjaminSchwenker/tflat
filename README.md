@@ -64,7 +64,7 @@ The training_samples.parquet file contains 10Mio training samples and the other 
     ```bash
    python3 trainer.py --train_input /path/to/parquet/TFlaT_training_samples.parquet --val_input /path/to/parquet/TFlaT_validation_samples.parquet --config config.yaml --warmstart
     ```
-   - Once the training is done a onnx weightfile is produced.
+   - Once the training is done a keras weightfile is produced.
 
 3. **Compute effective tagging efficiency**
    - The effective tagging efficiency is the main performance metric to evaluate flavor taggers at Belle II. 

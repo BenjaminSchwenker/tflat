@@ -19,7 +19,8 @@ conda create -n tflat  python=3.11.9
 conda activate tflat
 
 pip install 'tensorflow[and-cuda]'
-# yaml, parquet, keras
+pip install pyarrow
+pip install PyYAML
 ```
 
 ---

@@ -82,10 +82,10 @@ if __name__ == "__main__":
     X = df[variables].to_numpy()
     pred = model.predict(X)
 
-    df['qrTFLAT'] = pred
+    df['qrTFLAT'] = 2*pred-1
     df['r'] = df['qrTFLAT'].abs()
     df['tagflav'] = np.ceil(df['qrTFLAT'])*2-1
-    df['mctagflav'] = df[target_variable]
+    df['mctagflav'] = 2*df[target_variable] - 1
 
     print("wtf: ", getwtf(df))
     print("eeff: ", geteeff(df))

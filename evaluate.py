@@ -6,6 +6,7 @@ import numpy as np
 from uncertainties import ufloat
 import keras
 import utils
+import model
 
 rbins = [0.0, 0.1, 0.25, 0.45, 0.6, 0.725, 0.875, 1.0]
 nbins = 7
@@ -63,7 +64,7 @@ if __name__ == "__main__":
     modelPath = args.model
     configFile = args.configFile
 
-    model = keras.saving.load_model(modelPath)
+    model = keras.models.load_model(modelPath)
 
     df = pd.read_parquet(testFile)
 

@@ -13,7 +13,7 @@ if __name__ == "__main__":
     from model import get_tflat_model
 
     # parse cli arguments
-    parser = argparse.ArgumentParser(description='Train TFlat')
+    parser = argparse.ArgumentParser(description='Train TFlaT')
     parser.add_argument(  # input parser
         '--train_input',
         metavar='train_input',

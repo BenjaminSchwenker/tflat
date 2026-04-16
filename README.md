@@ -22,6 +22,7 @@ pip install 'tensorflow[and-cuda]'
 pip install pandas
 pip install pyarrow
 pip install PyYAML
+pip install uncertainties
 ```
 
 Confirm that tensorflow is seeing your GPU by typing:
@@ -62,7 +63,7 @@ The training_samples.parquet file contains 10Mio training samples and the other 
     ```
     - Should the training crash at any point it can be restarted from the latest checkpoint like this:
     ```bash
-   python3 trainer.py --train_input /path/to/parquet/TFlaT_training_samples.parquet --val_input /path/to/parquet/TFlaT_validation_samples.parquet --config config.yaml --warmstart
+   python3 trainer.py --train_input /path/to/parquet/TFlaT_training_samples.parquet --val_input /path/to/parquet/TFlaT_validation_samples.parquet --configFile config.yaml --warmstart
     ```
    - Once the training is done a keras weightfile is produced.
 
@@ -71,5 +72,5 @@ The training_samples.parquet file contains 10Mio training samples and the other 
    - See paper for details: https://doi.org/10.1140/epjc/s10052-022-10180-9
    - To compute the effective tagging efficiency on test data, run the next command
    ```bash
-   python3 evaluate.py --test_input /path/to/parquet/TFlaT_test_samples.parquet --model model.keras --config config.yaml
+   python3 evaluate.py --test_input /path/to/parquet/TFlaT_test_samples.parquet --model model.keras --configFile config.yaml
    ```

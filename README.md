@@ -38,7 +38,7 @@ follow the instructions on this page: https://www.tensorflow.org/install/pip
 
 ## Training Samples
 
-The Training of TFlaT requires $B^0 \rightarrow \nu \overline{\nu}$ samples to be produced. You can find the samples for training, validating and testing following this link.
+The Training of TFlaT requires $B^0 \rightarrow \nu \overline{\nu}$ samples to be produced. You can find the samples for training, validating and testing on zenodo following this link: https://zenodo.org/records/19632131
 
 ---
 
@@ -53,7 +53,7 @@ The time needed to complete a training depends on the specific GPU. For a NVIDIA
 
 1. **Data preparation**
 
-Download the files training_samples.parquet, validation_samples.parquet and test_samples.parquet from zenodo {add link here}.\
+Download the files training_samples.parquet, validation_samples.parquet and test_samples.parquet from zenodo (https://zenodo.org/records/19632131).\
 The training_samples.parquet file contains 10Mio training samples and the other two files contain 1Mio samples each.\ 
 
 2. **Training**

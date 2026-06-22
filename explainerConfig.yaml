@@ -1,0 +1,62 @@
+# This file contains the configuration for the explainer script.
+
+batch_size: 512
+num_samples: 5000 # Value of samples to use from the parquet file
+num_steps: 50 # Number of steps taken for the attribution calculation
+use_expectation: False # Set to True for Expected gradients, False for Integrated gradients. 
+
+trk_variable_list: # Input lists
+- charge
+- useCMSFrame(p)
+- useCMSFrame(cosTheta)
+- useCMSFrame(phi)
+- electronID
+- muonID
+- kaonID
+- pionID
+- protonID
+- pidPairProbabilityExpert(321, 211, CDC)
+- pidPairProbabilityExpert(321, 211, TOP)
+- pidPairProbabilityExpert(321, 211, ARICH)
+- pidPairProbabilityExpert(11, 211, TOP)
+- pidPairProbabilityExpert(11, 211, ARICH)
+- pidPairProbabilityExpert(11, 211, ECL)
+- pidPairProbabilityExpert(13, 211, TOP)
+- pidPairProbabilityExpert(13, 211, ARICH)
+- pidPairProbabilityExpert(13, 211, KLM)
+- pidPairProbabilityExpert(211, 321, TOP)
+- pidPairProbabilityExpert(211, 321, ARICH)
+- nPXDHits/2
+- nSVDHits/8
+- dxdiff
+- dydiff
+- dzdiff
+- clusterEoP
+- clusterLAT
+ecl_variable_list:
+- useCMSFrame(p)
+- useCMSFrame(cosTheta)
+- useCMSFrame(phi)
+- clusterE1E9
+- clusterE9E21
+- clusterLAT
+roe_variable_list:
+- countInList(gamma:tflat)/8
+- countInList(pi+:tflat)/6
+- NumberOfKShortsInRoe
+- ptTracksRoe(TFLATDefaultMask)
+
+parameters: # Architecture parameters
+  seed: null
+  clip_value: 4
+  mask_value: 0
+  num_trk: 10
+  num_ecl: 20
+  num_roe: 1
+  num_transformer_blocks: 6
+  num_heads: 4
+  embedding_dims: 128
+  mlp_hidden_units_factors:
+  - 2
+  - 1
+  dropout_rate: 0.1

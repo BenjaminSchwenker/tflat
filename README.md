@@ -2,7 +2,7 @@
 
 This README describes the training process of the transformer based flavortagger TFlaT.\
 The provided scripts cover all steps that are required to get from the parquet files with training data to a weightfile with the trained model.
-It also cover the computation of the effective tagging efficiency on a seperate test data set. 
+It also covers the computation of the effective tagging efficiency on a seperate test data set, and provides a way to interpret the importance from the variables by calculating the variable attributions. 
 
 
 ---
@@ -74,3 +74,50 @@ The training_samples.parquet file contains 10Mio training samples and the other 
    ```bash
    python3 evaluate.py --test_input /path/to/parquet/TFlaT_test_samples.parquet --model model.keras --configFile config.yaml
    ```
+## Explainer
+
+The explainer feature provides a way of calculating the attibutions values for Tflat. The algorithm used is Integrated Gradients through the library path-explain (https://github.com/suinleelab/path_explain.git). The attributions can be visualized in the jupyter notebook provided. 
+
+#### Note 
+For compatibility purposes, this code runs on the following versions:
+ - keras: 3.14.1
+ - tensorflow: 2.21.0
+
+### Usage
+
+1. **Set up** 
+For the usage of the explainer feature some extra packages are required. In the same virtual environment run: 
+```
+pip install path-explain
+pip install mathplotlib
+```
+
+2. **Set parameters**
+
+The parameters used for the attribution calculation are inside the file `explainerConfig.yaml`. The following parameters can be modified:
+
+   - *batch_size*: [int] size of the batches in which the data will be processed.
+   - *num_samples*: [int] number of samples taken from the data file to reduce computing time.
+   - *num_steps*:  [int] number of steps drawn for each sample during the computation of Integrated Gradients.
+   - *use_expectation*: [Bool] it's possible to use expected gradients instead of integrated gradients. If set to True, the attributions will be calculated using Expected Gradients.
+
+3. **Calculate attributions**
+
+To launch the calculation use the `explainer.py` script:
+```
+python3 explainer.py --data path/to/parquet/TFlaT_test_samples.parquet --model model.keras --configFile explainerConfig.yaml
+```
+
+This will produce an npz file containing the attributions and the samples used. The default name of this file is `attributions.npz`. This name can be modified by passing the parameter:
+```
+--output myAttributions
+```
+4. **Plot attributions**
+Use the jupyter notebook `attr_plot.ipynb` as a tool to prudce plots:
+- Bewswarm plot
+
+![Alt text](plots/beeswarm.png)
+
+- Bar plot groupping variables
+
+![Alt text](plots/group_bar.png)

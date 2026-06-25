@@ -1,11 +1,11 @@
 from yaml import full_load
-import numpy as np
 
 
 def load_config(configFile):
     with open(configFile, "r") as f:
         config = full_load(f)
     return config
+
 
 def make_display_names(blocks):
     # Map for the variable names
@@ -42,6 +42,7 @@ def make_display_names(blocks):
                 keys.append(f"{label} ({tag})")
     return names, keys
 
+
 def get_vars(config):
     parameters = config['parameters']
     trk_variable_list = config['trk_variable_list']
@@ -49,26 +50,27 @@ def get_vars(config):
     roe_variable_list = config['roe_variable_list']
 
     display_names, group_keys = make_display_names([
-    ('trk', trk_variable_list, parameters['num_trk'], True),
-    ('ecl', ecl_variable_list, parameters['num_ecl'], True),
-    ('roe', roe_variable_list, parameters['num_roe'], False),
+        ('trk', trk_variable_list, parameters['num_trk'], True),
+        ('ecl', ecl_variable_list, parameters['num_ecl'], True),
+        ('roe', roe_variable_list, parameters['num_roe'], False),
     ])
     return display_names, group_keys
 
+
 def get_super_groups():
     # Variable groupped according Sphinx docuementation
-    charge_label       = ['Charge (trk)']
-    k_trk_label        = ['p CMS (trk)', 'cosθ CMS (trk)', 'phi CMS (trk)']
-    k_ecl_label        = ['p CMS (ecl)', 'cosθ CMS (ecl)', 'phi CMS (ecl)']
-    pid_trk_label      = ['e ID (trk)', 'μ ID (trk)', 'K ID (trk)', 'π ID (trk)', 'p ID (trk)']
-    pid_expert_label   = ['K/π ID CDC (trk)', 'K/π ID TOP (trk)', 'K/π ID ARICH (trk)',
+    charge_label = ['Charge (trk)']
+    k_trk_label = ['p CMS (trk)', 'cosθ CMS (trk)', 'phi CMS (trk)']
+    k_ecl_label = ['p CMS (ecl)', 'cosθ CMS (ecl)', 'phi CMS (ecl)']
+    pid_trk_label = ['e ID (trk)', 'μ ID (trk)', 'K ID (trk)', 'π ID (trk)', 'p ID (trk)']
+    pid_expert_label = ['K/π ID CDC (trk)', 'K/π ID TOP (trk)', 'K/π ID ARICH (trk)',
                         'e/π ID TOP (trk)', 'e/π ID ARICH (trk)', 'e/π ID ECL (trk)',
                         'μ/π ID TOP (trk)', 'μ/π ID ARICH (trk)', 'μ/π ID KLM (trk)',
                         'π/K ID TOP (trk)', 'π/K ID ARICH (trk)']
     tracking_trk_label = ['nPXD/2 (trk)', 'nSVD/8 (trk)', 'Δx (trk)', 'Δy (trk)', 'Δz (trk)']
-    cluster_label      = ['Cluster E/p (trk)', 'clusterLAT (trk)',
-                        'Cluster E1/E9 (ecl)', 'Cluster E9/E21 (ecl)', 'clusterLAT (ecl)']
-    roe_vars_label     = ['# gamma/8 (roe)', '# π/6 (roe)', '# K_S (roe)', 'pT(ROE trk) (roe)']
+    cluster_label = ['Cluster E/p (trk)', 'clusterLAT (trk)',
+                     'Cluster E1/E9 (ecl)', 'Cluster E9/E21 (ecl)', 'clusterLAT (ecl)']
+    roe_vars_label = ['# gamma/8 (roe)', '# π/6 (roe)', '# K_S (roe)', 'pT(ROE trk) (roe)']
 
     super_groups = {
         'Charge':          charge_label,

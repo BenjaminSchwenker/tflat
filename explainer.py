@@ -9,10 +9,9 @@ import numpy as np
 import keras
 
 
-
 if __name__ == "__main__":
-    
-     # parse cli arguments
+
+    # parse cli arguments
     parser = argparse.ArgumentParser(description='Evaluate TFlaT')
     parser.add_argument(  # input parser
         '--data',
@@ -74,7 +73,7 @@ if __name__ == "__main__":
 
     # Take samples from the parquet file
     samples = []
-    collected = 0 
+    collected = 0
     for batch in df.iter_batches(batch_size=num_samples, columns=variables):
         df = batch.to_pandas()
 
@@ -94,7 +93,7 @@ if __name__ == "__main__":
     model = keras.saving.load_model(modelPath)
     print("Model loaded successfully.")
 
-    #Create the explainer
+    # Create the explainer
     explainer = PathExplainerTF(model)
     print("Explainer created successfully.")
 
@@ -104,12 +103,12 @@ if __name__ == "__main__":
     # Calculate the attributions
     print('Calculating attributions...')
     attributions = explainer.attributions(inputs=data,
-                                      baseline=baseline,
-                                      batch_size=batch_size,
-                                      num_samples=num_steps,
-                                      use_expectation=use_expectation,
-                                      verbose=True)
-    
+                                          baseline=baseline,
+                                          batch_size=batch_size,
+                                          num_samples=num_steps,
+                                          use_expectation=use_expectation,
+                                          verbose=True)
+
     # Save the attributions into an npz file
     np.savez_compressed(
         outputFile,

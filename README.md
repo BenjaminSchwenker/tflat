@@ -116,8 +116,8 @@ This will produce an npz file containing the attributions and the samples used. 
 Use the jupyter notebook `attr_plot.ipynb` as a tool to prudce plots:
 - Bewswarm plot
 
-![Alt text](plots/beeswarm.png)
+![Alt text](Explainer_plots/beeswarm.png)
 
 - Bar plot groupping variables
 
-![Alt text](plots/group_bar.png)
+![Alt text](Explainer_plots/group_bar.png)

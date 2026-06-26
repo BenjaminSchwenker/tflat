@@ -104,7 +104,7 @@ The parameters used for the attribution calculation are at the end of the file `
 
 To launch the calculation use the `explainer.py` script:
 ```
-python3 explainer.py --data path/to/parquet/TFlaT_test_samples.parquet --model model.keras --configFile explainerConfig.yaml
+python3 explainer.py --data path/to/parquet/TFlaT_test_samples.parquet --model model.keras --configFile config.yaml
 ```
 
 This will produce an npz file containing the attributions and the samples used. The default name of this file is `attributions.npz`. This name can be modified by passing the parameter:

@@ -78,3 +78,8 @@ chunk_size: 102400 # This should be multiple of batch size
 # Miscellaneous parameters
 VersionBeamBackgroundMVA: MC15ri
 VersionFakePhotonMVA: MC15ri
+
+# Explainer paramters
+num_samples: 5000 # Value of samples to use from the parquet file
+num_steps: 50 # Number of steps taken for the attribution calculation
+use_expectation: False # Set to True for Expected gradients, False for Integrated gradients. 

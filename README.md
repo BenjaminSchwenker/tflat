@@ -94,9 +94,8 @@ pip install mathplotlib
 
 2. **Set parameters**
 
-The parameters used for the attribution calculation are inside the file `explainerConfig.yaml`. The following parameters can be modified:
+The parameters used for the attribution calculation are at the end of the file `config.yaml`. The following parameters can be modified:
 
-   - *batch_size*: [int] size of the batches in which the data will be processed.
    - *num_samples*: [int] number of samples taken from the data file to reduce computing time.
    - *num_steps*:  [int] number of steps drawn for each sample during the computation of Integrated Gradients.
    - *use_expectation*: [Bool] it's possible to use expected gradients instead of integrated gradients. If set to True, the attributions will be calculated using Expected Gradients.
